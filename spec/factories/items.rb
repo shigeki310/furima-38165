@@ -6,13 +6,14 @@ FactoryBot.define do
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
     end
 
-    title                  {}
-    description            {}
-    category_id            { :id 1 }
-    item_status_id         { :id 1 }
-    shipping_cost_id       { :id 1 }
-    shipping_date_id       { :id 1 }
-    prefecture_id          { :id 0 }
+    title                  {Faker::Name}
+    description            {Faker::Lorem.sentence}
+    category_id            {'3'}
+    item_status_id         {'3'}
+    shipping_cost_id       {'3'}
+    shipping_date_id       {'3'}
+    prefecture_id          {'3'}
+    price                  {'3000'}
 
   end
 end
