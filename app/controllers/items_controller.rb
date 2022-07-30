@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :move_to_index, only: [:edit, :update, :destroy] 
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def create 
+  def create
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
@@ -24,9 +24,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path if current_user == @item.user && @item.order != nil
+    redirect_to root_path if current_user == @item.user && !@item.order.nil?
   end
-
 
   def update
     if @item.update(item_params)
@@ -38,10 +37,8 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-      redirect_to root_path
+    redirect_to root_path
   end
-
-
 
   private
 
@@ -54,7 +51,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:image,:title,:description,:price,:category_id,:item_status_id,:prefecture_id,:shipping_cost_id,:shipping_date_id).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :title, :description, :price, :category_id, :item_status_id, :prefecture_id, :shipping_cost_id,
+                                 :shipping_date_id).merge(user_id: current_user.id)
   end
-
 end

@@ -27,7 +27,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと購入できない' do
         @order_address.postal_code = '1112222'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "Postal code is invalid. Include hyphen(-)"
+        expect(@order_address.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
       it 'prefecture_idが空では購入できない' do
         @order_address.prefecture_id = ''
@@ -37,7 +37,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'prefecture_idが「---」が選択されていると購入できない' do
         @order_address.prefecture_id = '0'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "Prefecture must be other than 0"
+        expect(@order_address.errors.full_messages).to include 'Prefecture must be other than 0'
       end
       it 'cityが空では購入できない' do
         @order_address.city = ''
@@ -57,17 +57,17 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが半角数字12桁以上入力すると購入できない' do
         @order_address.phone_number = '0901111222233'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "Phone number is invalid"
+        expect(@order_address.errors.full_messages).to include 'Phone number is invalid'
       end
       it 'phone_numberが半角数字8桁以下の入力だと購入できない' do
         @order_address.phone_number = '01201234'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "Phone number is invalid"
+        expect(@order_address.errors.full_messages).to include 'Phone number is invalid'
       end
       it 'phone_numberにハイフンがると購入できない' do
         @order_address.phone_number = '090-1234-1234'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "Phone number is invalid"
+        expect(@order_address.errors.full_messages).to include 'Phone number is invalid'
       end
       it 'user_idが紐付いていないと購入できない' do
         @order_address.user_id = nil
