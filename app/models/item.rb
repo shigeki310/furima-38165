@@ -22,9 +22,9 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_date
 
-  validates :category_id, numericality: { other_than: 1 }
-  validates :item_status_id, numericality: { other_than: 1 }
-  validates :shipping_cost_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 0  }
-  validates :shipping_date_id, numericality: { other_than: 1 }
+  validates :category_id, numericality: { other_than: 1 ,message: 'を選択して下さい'}
+  validates :item_status_id, numericality: { other_than: 1 ,message: 'を選択して下さい'}
+  validates :shipping_cost_id, numericality: { other_than: 1 ,message: 'を選択して下さい'}
+  validates :prefecture_id, numericality: { other_than: 0 ,message: 'を選択して下さい' }
+  validates :shipping_date_id, numericality: { other_than: 1 ,message: 'を選択して下さい'}
 end
